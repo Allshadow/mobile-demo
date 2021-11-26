@@ -1,19 +1,36 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <van-button type="danger">我是按钮</van-button>
+    <van-button type="danger" @click="toSign">电子签名</van-button>
+    <base-signature
+      title="学生电子签字"
+      :isShow.sync="signShow"
+      @done="done">
+    </base-signature>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import BaseSignature from '@/components/BaseSignature.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    BaseSignature
+  },
+  data () {
+    return {
+      signShow: false
+    }
+  },
+
+  methods: {
+    done (val) {
+      // 签字返回的内容
+    },
+
+    toSign () {
+      this.signShow = true
+    }
   }
 }
 </script>
